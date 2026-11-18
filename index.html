@@ -135,7 +135,7 @@ footer p{margin:0 0 6px}
       <h1>Girls in School Initiative</h1>
       <p class="olede">Divide a gift across the programme and see what each part pays for, who it reaches, and what the research says.</p>
     </div>
-    <p class="otext">Sierra Leone's 13,444 schools enrol about 3.45 million pupils, 1.78 million of them girls (MBSSE, 2025). GISI is Corus International's programme to keep girls in school in Sierra Leone. Wi De Ya, the Ministry of Basic and Senior Secondary Education's school reporting system, profiles every learner, so cash and support go to the girls most at risk. When a girl stops attending, the school is alerted, a case worker visits, and the family is linked to the help it needs. The work runs with the Teaching Service Commission and district education staff. Nine of the thirteen parts below have been delivered in GISI; the other four are options from Corus's programme menu and are marked as such.</p>
+    <p class="otext">Sierra Leone's 13,444 schools enrol about 3.45 million pupils, 1.78 million of them girls (MBSSE, 2025). The Girls in School Initiative (GISI), run by Corus International with the Ministry of Basic and Senior Secondary Education, the Teaching Service Commission and district education staff, uses Wi De Ya, the Ministry's school reporting system, to find girls at risk of leaving school and to pay for what keeps them there. When a girl stops attending, the school is alerted, a case worker visits, and the family is linked to the help it needs. Each part below says what a dollar buys. Nine parts have run in GISI; four are priced but have not yet run in GISI, and are marked.</p>
     <div class="gift">
       <h2 id="giftLabel">Size of gift</h2>
       <div class="seg" id="presets" role="group" aria-labelledby="giftLabel"></div>
@@ -156,7 +156,7 @@ footer p{margin:0 0 6px}
 
   <section class="wrap">
     <div class="tools">
-      <p>Move a slider, or use the minus and plus buttons; the other parts adjust in proportion so the total stays at 100%. The page opens at GISI's recommended mix: half on cash transfers, then digitising schools, case management, and training for school leaders and local government.</p>
+      <p>Move a slider, or use the minus and plus buttons; the other parts adjust in proportion so the total stays at 100%. The page opens at GISI's recommended mix: half on monthly cash, then attendance records, home visits, scholarships and district workshops.</p>
       <button type="button" class="chip" id="start">GISI recommended mix</button>
       <button type="button" class="chip" id="equal">Split equally</button>
       <button type="button" class="chip" data-level="family">All to girls and families</button>
@@ -185,7 +185,7 @@ footer p{margin:0 0 6px}
 
   <section class="wrap notes" aria-labelledby="noteh">
     <h2 id="noteh">About these figures</h2>
-    <p class="disc">The page shows what a gift buys and how many pupils it reaches. It does not estimate GISI's own effect on attendance, dropout, or learning: that comes from GISI's evaluation, not from this page. What a gift pays for is an estimate, based on Corus's own costs or, where Corus has not yet costed an activity, on published studies of similar work. Much of the research comes from other countries, and "Why it matters" is Corus's own view. Pupil numbers use Sierra Leone's national averages of about 257 pupils per school, roughly half of them girls, and 37 pupils per teacher (MBSSE, 2025); some pupils are reached by more than one part, so the numbers should not be added together. The page is for illustration and is not an offer or a commitment on how a gift will be spent.</p>
+    <p class="disc">Prices are set by Corus and include delivery. The page shows what a gift buys and how many pupils it reaches. It does not estimate GISI's own effect on attendance, dropout, or learning: that comes from GISI's evaluation, not from this page. Much of the research comes from other countries, and "Why it matters" is Corus's own view. Pupil numbers use Sierra Leone's national averages of about 257 pupils per school, roughly half of them girls, and 37 pupils per teacher (MBSSE, 2025); some pupils are reached by more than one part, so the numbers should not be added together. The page is for illustration and is not an offer or a commitment on how a gift will be spent.</p>
     <h2>References</h2>
     <ol class="refs" id="refs"></ol>
   </section>
@@ -193,7 +193,7 @@ footer p{margin:0 0 6px}
 
 <footer>
   <div class="wrap">
-    <p>Draft for discussion. Version 6, 17 November 2026. No payment is taken and nothing entered is stored.</p>
+    <p>Draft for discussion. Version 7, 18 November 2026. No payment is taken and nothing entered is stored.</p>
     <p>The Corus International family: IMA World Health, Lutheran World Relief, CGA Technologies, Ground Up Investing, Farmers Market Brands, and Cadasta.</p>
   </div>
 </footer>
@@ -202,96 +202,109 @@ footer p{margin:0 0 6px}
 "use strict";
 var LEVELS = [
   {id:"family", name:"With girls and families", color:"#ff6b00",
-   blurb:"Deep and direct: one household at a time, felt this school year."},
+   blurb:"Paid to or for one girl or her family."},
   {id:"school", name:"With schools", color:"#66ba00",
-   blurb:"Wider: every child in a school, through the people and records met each day."},
+   blurb:"Paid per school, reaching every child in it."},
   {id:"system", name:"With government systems", color:"#194169",
-   blurb:"Widest and slowest: every school, through government's own staff and budget."}
+   blurb:"Paid to strengthen district and national staff and records."}
 ];
 var EV = {strong:"Strong", moderate:"Moderate", mixed:"Mixed", limited:"Limited"};
 
-var COSTS = {case:30, cash:29, referral:9.77, wrap:488, kits:11, mgmt:500, digitise:750, target:3,
-  infra:5000, baseline:770, retention:100, payroll:30};
+var COSTS = {case:30, cash:29, referral:5, wrap:697, kits:11, mgmt:100, digitise:750, target:5,
+  infra:5000, baseline:770, retention:100, lgcap:1000, payroll:30};
 
 var PARTS = [
- {id:"case", level:"family", name:"Case management", color:"#ff6b00",
-  what:"When Wi De Ya shows a girl has stopped attending, a case worker visits her home to find out why and agrees a plan with the family.",
-  unit:"home visit", units:"home visits", cost:"Corus menu: US$30 per home visit", comp:false,
-  why:"At US$30, a visit costs about the same as one month of cash for one girl. A visit is often the first time anyone from the school system has sat with the family about this girl. It turns an absence record into a reason, and a reason into a plan, and it tells the family the school noticed.",
+ {id:"case", level:"family", name:"Home visits", color:"#ff6b00",
+  what:"US$30 pays for one visit by a case worker to the home of a girl whom Wi De Ya shows has stopped attending, to find out why and agree with her family how she returns.",
+  unit:"home visit", units:"home visits", one:"one home visit",
+  cost:"US$30 a visit.",
+  why:"At US$30, a visit costs about the same as one month of cash for one girl. A visit is often the first time anyone from the school system has sat with the family about this girl. It turns an absence record into a reason, and a reason into a plan.",
   ev:"moderate",
   evidence:"No trial isolates the effect of home visits by case workers. In Guatemala, a randomised trial of an early-warning system that gave schools lists of students at risk cut dropout between primary and lower secondary by 1.3 percentage points, or 4%; the effect was 1.9 points for boys and 0.7 points for girls, and the effect for girls was not statistically significant (Haimovich, Vazquez and Adelman, 2021). In Rajasthan, Educate Girls' volunteers, visiting door to door, enrolled 768 of 837 eligible out-of-school girls (92%); that is a before-and-after result, not a causal estimate (IDinsight, 2018)."},
- {id:"cash", level:"family", name:"Cash transfer", color:"#ff8a33",
-  what:"A monthly mobile-money transfer to the caregiver of an enrolled girl, targeted by vulnerability and linked to her attendance.",
-  unit:"girl-month of cash", units:"girl-months of cash", cost:"Corus menu: US$29 per girl per month, including overheads", comp:false,
-  why:"The most direct relief to a household budget. It offsets what a girl might earn, or what her family would save by keeping her at home, and it keeps the family in contact with the school. It is the most expensive part per girl, so it is worth most when it reaches the girls who would otherwise leave.",
+ {id:"cash", level:"family", name:"Monthly cash for families", color:"#ff8a33",
+  what:"US$29 pays one month's mobile-money transfer to the caregiver of a girl at risk of leaving school, paid while she attends. US$290 supports one girl for a school year.",
+  unit:"monthly payment", units:"monthly payments", one:"one girl's monthly payment",
+  cost:"US$29 a girl a month; US$290 for a school year of 10 months.",
+  why:"The most direct relief to a household budget. It offsets what a girl might earn, or what her family would save by keeping her at home, and it keeps the family in contact with the school. It is the most expensive part per girl, so it does most good when it reaches the girls who would otherwise leave.",
   ev:"strong",
   evidence:"A review of 35 studies found that conditional and unconditional transfers both raise enrolment and attendance, that monitored and enforced conditions give larger effects, and that effects on learning are small (Baird et al., 2014). In Malawi, transfers to adolescent girls conditional on attendance cut dropout more than unconditional transfers and produced better English reading than unconditional transfers, while unconditional transfers did more to delay marriage and pregnancy among girls who left school (Baird, McIntosh and Ozler, 2011). A review of over 200 impact evaluations found that cash transfers raised schooling but not learning, at relatively high cost (Angrist et al., 2023)."},
- {id:"referral", level:"family", name:"Referral support", color:"#ffa866",
-  what:"Building working relationships between GISI and other programmes, in health, social protection, child protection, and livelihoods, and helping boys and girls use their services.",
-  unit:"child linked to services for a year", units:"children linked to services for a year", cost:"Comparator: US$9.77 per beneficiary per year, case management for orphans and vulnerable children in an NGO project in South Africa where government paid for most field services (MEASURE Evaluation, 2019)", comp:true,
+ {id:"referral", level:"family", name:"Links to other services", color:"#ffa866",
+  what:"US$5 pays for a case worker to connect one child, boy or girl, to a service GISI does not provide, such as a clinic, child protection or a food programme, and to check the child was seen.",
+  unit:"child linked to a service", units:"children linked to a service", one:"linking one child to a service",
+  cost:"US$5 a child.",
   why:"Many reasons a child leaves school lie outside the school. Referral lets GISI draw on services that already exist instead of rebuilding them, so a home visit can end in a remedy. Most families need none; for a child facing illness, violence, or hunger it can decide whether they return.",
   ev:"moderate",
   evidence:"In Tanzania's Kizazi Kipya programme for orphans and vulnerable children, community case workers made about 147,000 referrals. Within 90 days, 89% of children's referrals to child protection teams were completed, against 48% of referrals to HIV services, and case workers with more experience did better; this is an analysis of programme records, not a trial (Bajaria et al., 2020). In a randomised trial of Child FIRST in the United States, where a care coordinator links families to services, families obtained 91% of the services they wanted against 33% under usual care, and were less likely to be involved with child protection three years later (Lowell et al., 2011)."},
- {id:"wrap", level:"family", name:"Wrap-around training", color:"#ffc699",
-  what:"Sessions in and around the school on menstrual health, child rights and safe reporting of violence, and positive parenting that tackles why parents withdraw girls.",
-  unit:"school-year of sessions", units:"school-years of sessions", cost:"Corus menu: US$488 per school per year (menstrual health US$110, child rights up to US$110, positive parenting US$268); training trainers adds a one-off US$2,087", comp:false,
+ {id:"wrap", level:"family", name:"Sessions on periods, rights and parenting", color:"#ffc699",
+  what:"About US$697 pays for a school's first year of sessions: menstrual health for girls, child rights and how to report violence safely, positive parenting for caregivers, and a share of training the session leaders.",
+  unit:"school's first year of sessions", units:"schools' first year of sessions", one:"one school's first year of sessions",
+  cost:"About US$697 a school for the first year, including a share of training the session leaders; US$488 a year after that.",
   why:"Cash changes what a family can afford; these sessions aim to change what a family and a girl believe is possible and safe. The effect is slow to show and hard to count; where it takes hold, it is likely to outlast the transfer.",
   ev:"moderate",
   evidence:"In Uganda, clubs combining life skills and vocational training for adolescent girls sharply reduced teen pregnancy, early marriage or cohabitation, and sex against a girl's will four years on, in a randomised trial (Bandiera et al., 2020). In a randomised trial in South Africa, a 14-session parenting programme for families with adolescents cut abuse reported by caregivers by about 45% five to nine months later; abuse reported by adolescents did not fall significantly (Cluver et al., 2018). The Global Education Evidence Advisory Panel rates teaching socio-emotional and life skills, and safeguarding students from violence, as 'promising but limited evidence' (GEEAP, 2023)."},
- {id:"kits", menu:true, level:"family", name:"Menstrual kits", color:"#ffe2cc",
-  what:"Locally made reusable sanitary kits for girls, lasting about three years, with hygiene kits for boys.",
-  unit:"girl's kit for three years", units:"girls' kits for three years", cost:"Corus menu: US$11 per girl's kit; boys' kits about US$5.50 (estimated)", comp:false,
-  why:"A small, concrete thing that removes a monthly reason to stay at home. Its value is dignity as much as attendance, and it is felt by each girl directly.",
+ {id:"kits", menu:true, level:"family", name:"Reusable menstrual pads", color:"#ffe2cc",
+  what:"US$11 pays a local tailor to sew one girl's set of reusable pads, which lasts about three years.",
+  unit:"girl's set of pads", units:"girls' sets of pads", one:"one girl's set of pads",
+  cost:"US$11 a girl; the pads last about three years.",
+  why:"Pads remove a monthly reason to stay at home. Their value is dignity as much as attendance, and each girl receives them directly.",
   ev:"mixed",
   evidence:"A 2024 review of 16 randomised and non-randomised trials found that menstrual hygiene programmes improved attendance, dropout, and menstrual knowledge, although results vary and most programmes paired products with education (Betsu et al., 2024). In a pilot randomised trial in 30 Kenyan schools, cups or pads did not reduce school dropout; cups lowered sexually transmitted infections and bacterial vaginosis, while the effect of pads on infections was smaller and not statistically significant (Phillips-Howard et al., 2016)."},
 
- {id:"mgmt", level:"school", name:"School management", color:"#507837",
-  what:"Training head teachers and deputies to run an inclusive, gender-safe school and to act on attendance alerts, with annual awards for schools that fund scholarships for top-performing girls.",
-  unit:"school leadership team trained", units:"school leadership teams trained", cost:"Corus menu: US$500 per school; awards US$100 per school per year extra", comp:false,
-  why:"A head teacher decides whether an absence alert becomes a phone call or is ignored. Money here aims at the daily habits of the place where children spend most of their day, for every child in the school and not only those receiving cash.",
-  ev:"mixed",
-  evidence:"In The Gambia, a trial in 273 primary schools found that management training for head teachers, teachers, and communities, with a small grant, cut student absenteeism by 21% and teacher absenteeism by 23% after three to four years, but did not raise test scores; the grant alone did nothing (Blimpo, Evans and Lahire, 2015). A trial in 1,774 schools in Madhya Pradesh, India, found that school assessments, ratings, and improvement plans, without changes to accountability or incentives, had no effect on how schools ran or on pupils' results (Muralidharan and Singh, 2020). Our reading: training matters where it is tied to action, as GISI ties it to attendance alerts."},
- {id:"digitise", level:"school", name:"Digitising schools", color:"#66ba00",
-  what:"Devices and set-up so a school records enrolment and daily attendance in Wi De Ya, the Ministry's school reporting system.",
-  unit:"school digitised", units:"schools digitised", cost:"Corus menu: US$750 per school", comp:false,
-  why:"Invisible to families and essential to everything else. Without daily records there is no alert, no visit, no payment on attendance, and no payroll check. It leaves the Ministry with a record of the school that outlasts the programme.",
+ {id:"mgmt", level:"school", name:"Scholarships for girls", color:"#507837",
+  what:"US$100 pays one girl's scholarship for a school year.",
+  unit:"girl's scholarship for a year", units:"girls' scholarships for a year", one:"one girl's scholarship for a year",
+  cost:"US$100 a girl for a school year.",
+  why:"A scholarship meets costs of a girl's schooling for a year, so those costs are less likely to be the reason her family keeps her at home. It also tells her and her family that the school expects her to continue.",
+  ev:"moderate",
+  evidence:"In a randomised trial in Kenya, a merit scholarship for adolescent girls paid school fees and a grant for school supplies to girls who scored well on exams. Girls' exam scores rose by an average of 0.12 to 0.19 standard deviations; boys, who could not win, and girls with low earlier scores, who were unlikely to win, also gained, and both pupil and teacher attendance rose in the schools taking part (Kremer, Miguel and Thornton, 2004)."},
+ {id:"digitise", level:"school", name:"Attendance records for a school", color:"#66ba00",
+  what:"US$750 equips one school to record enrolment and daily attendance in Wi De Ya, the Ministry's school reporting system: one tablet, a charger, a year of mobile data, and training for the two staff who keep the register.",
+  unit:"school equipped", units:"schools equipped", one:"one school's equipment",
+  cost:"US$750 a school, including the first year of mobile data.",
+  why:"Families do not see it, but every other part depends on it: without daily records there is no alert, no visit, no payment on attendance, and no payroll check. The Ministry keeps the school's records after the programme ends.",
   ev:"limited",
   evidence:"In Guatemala and Honduras, models built on administrative school records correctly identified 80% of sixth-grade students who would drop out within a year (Adelman et al., 2018). This shows the records can find the children at risk; the benefit depends on what is done with them."},
- {id:"target", level:"school", name:"Targeting with school data", color:"#8fcf40",
-  what:"Using each learner's Wi De Ya profile to direct cash, visits, and referrals to the girls most at risk, and giving schools and districts regular lists of who needs attention.",
-  unit:"learner covered by targeting", units:"learners covered by targeting", cost:"Comparator: under US$3 per learner, Guatemala's national early-warning system (Haimovich, Vazquez and Adelman, 2021)", comp:true,
+ {id:"target", level:"school", name:"Lists of girls most at risk", color:"#8fcf40",
+  what:"US$5 per learner pays for ranking learners by risk from their Wi De Ya records and sending each school and district a regular list of who needs a visit, cash or a referral.",
+  unit:"learner on the risk lists", units:"learners on the risk lists", one:"one learner on the risk lists",
+  cost:"US$5 a learner.",
   why:"Every other part of the programme goes further when it reaches the girls who would otherwise leave, while there is still time to act. It is cheap per learner and wide in reach; each child feels it only through the adults who act on it.",
   ev:"moderate",
   evidence:"In Guatemala, a randomised trial of an early-warning system run mostly with existing government staff reduced dropout by about 4% at under US$3 per student, although the effect for girls alone was small and not statistically significant (Haimovich, Vazquez and Adelman, 2021). In Togo, a simulation found that targeting cash with phone data left out 4% to 21% fewer eligible poor people than targeting by area, but more than a full social registry would have (Aiken et al., 2022)."},
- {id:"infra", menu:true, level:"school", name:"School infrastructure", color:"#b3df80",
-  what:"Small grants for repairs, gender-separated latrines, handwashing, furniture, and disability access, prioritised by a gender-safety audit.",
-  unit:"school upgraded", units:"schools upgraded", cost:"Corus menu: from US$5,000 per school", comp:false,
-  why:"A safe, private latrine can decide whether a girl stays through the school day or goes home, particularly once she reaches puberty. It is a lasting asset that serves every child in the school for years.",
+ {id:"infra", menu:true, level:"school", name:"Girls' latrine block", color:"#b3df80",
+  what:"US$5,000 pays for a separate latrine block for girls, with handwashing, at one school, sited by a gender-safety audit.",
+  unit:"school latrine block", units:"school latrine blocks", one:"one school's latrine block",
+  cost:"US$5,000 a school.",
+  why:"A safe, private latrine can decide whether a girl stays through the school day or goes home, particularly once she reaches puberty. It serves every girl in the school for years.",
   ev:"moderate",
   evidence:"In Burkina Faso, a regression-discontinuity study found that 'girl-friendly' schools with separate latrines and other features raised enrolment by 19 percentage points, 5 points more for girls than boys, and raised test scores (Kazianga et al., 2013). In India, latrines raised the enrolment of pubescent girls mainly where they were sex-specific, and only sex-specific latrines narrowed the gap with boys; test scores did not rise (Adukia, 2017). The Global Education Evidence Advisory Panel rates school buildings provided alone, when other problems are not addressed, as a 'bad buy' for learning (GEEAP, 2023)."},
- {id:"baseline", menu:true, level:"school", name:"Community baseline survey", color:"#cde1cd",
-  what:"A survey of the school's community that maps child labour in farming households and sets the conditions attached to cash transfers.",
-  unit:"school community surveyed", units:"school communities surveyed", cost:"Corus menu: US$770 per school", comp:false,
+ {id:"baseline", menu:true, level:"school", name:"Community survey before cash starts", color:"#cde1cd",
+  what:"US$770 pays for a survey of the families around one school, finding where children work on farms so that the attendance conditions on cash are ones a family can meet in the harvest season.",
+  unit:"school community surveyed", units:"school communities surveyed", one:"one school community's survey",
+  cost:"US$770 a school, once, before cash begins.",
   why:"It makes the conditions on cash fit local reality, so a family is not asked for something it cannot do in harvest season. Its value is in the design of everything that follows rather than in any direct service.",
   ev:"limited",
-  evidence:"In child labour monitoring and remediation systems in West African cocoa, the share of interviewed children identified in hazardous work ranged from 0.5% to 27% between projects in Cote d'Ivoire and from 2.5% to 60% in Ghana. Farm visits found children who had been absent at the home visit and not mentioned by their parents. In ICI's own system in Cote d'Ivoire, 38% of identified children reported no longer doing hazardous tasks at the first follow-up visit, with no comparison group (ICI, 2021). No rigorous study isolates the value of a baseline itself. Our reading: local prevalence varies too much to set conditions without one."},
- {id:"retention", menu:true, level:"school", name:"Teacher rural retention", color:"#e3f1d0",
-  what:"A US$100 award to a rural teacher for every school year with fewer than six unauthorised absences, checked against Wi De Ya attendance records.",
-  unit:"teacher rewarded for a year", units:"teachers rewarded for a year", cost:"Corus: US$100 per teacher per year with fewer than six unauthorised absences", comp:false,
+  evidence:"In child labour monitoring and remediation systems in West African cocoa, the share of interviewed children identified in hazardous work ranged from 0.5% to 27% between projects in Cote d'Ivoire and from 2.5% to 60% in Ghana. Farm visits found children who had been absent at the home visit and not mentioned by their parents. In ICI's own system in Cote d'Ivoire, 38% of identified children reported no longer doing hazardous tasks at the first follow-up visit, with no comparison group (ICI, 2021). No rigorous study isolates the value of a baseline itself. Corus's reading: local prevalence varies too much to set conditions without one."},
+ {id:"retention", menu:true, level:"school", name:"Attendance awards for rural teachers", color:"#e3f1d0",
+  what:"US$100 pays one rural teacher's award for a school year with fewer than six unauthorised absences, checked against Wi De Ya records.",
+  unit:"teacher's award for a year", units:"teachers' awards for a year", one:"one teacher's award",
+  cost:"US$100 a teacher for each school year earned.",
   why:"A girl cannot learn in a classroom without a teacher. Rural schools lose teachers first and see the most absence, so a reward for turning up keeps the rest of the programme from resting on an empty classroom. The award is paid only for good attendance, so no money goes to a teacher who was absent; some awards will reward teachers who would have attended anyway.",
   ev:"moderate",
   evidence:"In The Gambia, a study comparing schools either side of the distance threshold found that a salary premium of 30% to 40% for teachers in remote schools raised the share of qualified teachers by 10 percentage points and cut the number of pupils per qualified teacher by 27 (Pugatch and Schroeder, 2014). In a randomised trial in NGO-run non-formal schools in rural India, paying teachers according to camera-verified daily attendance cut teacher absence by 21 percentage points and raised pupils' test scores by 0.17 standard deviations (Duflo, Hanna and Ryan, 2012)."},
 
- {id:"lgcap", level:"system", name:"Capacity building of local government", color:"#194169",
-  what:"Coaching and tools for district education staff and the Teaching Service Commission to use school data to target, monitor, and pay schools and teachers.",
-  unit:null, cost:"Not yet costed by Corus. The nearest comparator is a different activity: phone checks on a farm payment in Telangana, India, cost 3.6 US cents per extra dollar delivered (Muralidharan et al., 2021)", comp:true,
-  why:"The furthest from any one girl and the closest to permanence. When district staff can do this themselves, the programme's methods survive the programme, and its value lies in what government does with its own, much larger, budget.",
+ {id:"lgcap", level:"system", name:"Workshops for district education staff", color:"#194169",
+  what:"US$1,000 pays for a one-day workshop for the staff of one district education office on using Wi De Ya data to target, monitor and pay schools and teachers.",
+  unit:"district workshop", units:"district workshops", one:"one district workshop",
+  cost:"US$1,000 a workshop.",
+  why:"No girl sees it directly. When district staff can use the data themselves, the programme's methods can outlast the programme and shape how government spends its own, much larger, budget.",
   ev:"moderate",
   evidence:"In Uganda in the mid-1990s only about a fifth of the central government's capitation grants reached primary schools; publishing what each district received reduced the capture and raised enrolment, a result a later replication confirmed for enrolment but not for learning (Reinikka and Svensson, 2005; Kuecken and Valfort, 2015). In a randomised trial in Telangana, India, telling officials that delivery of a farm support payment would be checked through calls to farmers cut the number of farmers who missed their payment by 7.8%, at 3.6 cents per additional dollar delivered (Muralidharan et al., 2021)."},
- {id:"payroll", level:"system", name:"Payroll cleaning", color:"#009ed1",
-  what:"When a school is digitised, Wi De Ya brings the payroll list to the school, the staff present are verified, and corrections go to the Ministry. GISI also supports the payroll steering committee, government reporting, and district staff verification visits.",
-  unit:"school payroll check", units:"school payroll checks", cost:"Corus: US$30 per school visit, verifying about 20 teachers at once, or about US$1.50 per teacher", comp:false,
-  why:"A repair to the system that can pay for itself. Each ghost name removed frees a salary that can pay a teacher who is in a classroom, and a working teacher brought onto the payroll is more likely to stay. Because about 20 teachers are checked in one school visit, each check costs very little. No family sees it directly.",
+ {id:"payroll", level:"system", name:"Payroll corrections", color:"#009ed1",
+  what:"US$30 pays for one teacher to be added to or removed from the payroll after the school's staff are checked against the payroll list, with the correction sent to the Ministry. GISI also supports the payroll steering committee and district verification visits.",
+  unit:"payroll correction", units:"payroll corrections", one:"one payroll correction",
+  cost:"US$30 a correction. In the 300-school phase of Wi De Ya, 2,791 teachers were checked; 253 names were removed and 1,088 working teachers were found not on the payroll (CGA Technologies, 2023).",
+  why:"Each name removed frees a salary that can pay a teacher who is in a classroom, and a working teacher brought onto the payroll is more likely to stay. No family sees it directly.",
   ev:"moderate",
   evidence:"Liberia's vetting of its 19,500 teachers identified 2,046 ghost teachers, removed 83% of them, and recouped US$2.3 million a year in salaries, according to an audit cited in a case study; a US$1 million grant supported the vetting and teacher testing (Ladhani and Sinclair, 2018). In India, 23.6% of teachers were absent on unannounced visits; the salaries paid for unauthorised absence cost about US$1.5 billion a year, and more frequent inspection was strongly associated with lower absence (Muralidharan et al., 2017)."}
 ];
@@ -306,26 +319,24 @@ var REFS = [
  "Bajaria, S., Abdul, R., Exavery, A., Minja, E., Charles, J., Mtenga, S., Jere, E. and Geubbels, E. (2020) 'Programmatic determinants of successful referral to health and social services for orphans and vulnerable children: a longitudinal study in Tanzania', PLoS ONE, 15(9), e0239163. Available at: https://doi.org/10.1371/journal.pone.0239163",
  "Bandiera, O., Buehren, N., Burgess, R., Goldstein, M., Gulesci, S., Rasul, I. and Sulaiman, M. (2020) 'Women's empowerment in action: evidence from a randomized control trial in Africa', American Economic Journal: Applied Economics, 12(1), pp. 210-259. Available at: https://doi.org/10.1257/app.20170416",
  "Betsu, B.D., Medhanyie, A.A., Gebrehiwet, T.G. and Wall, L.L. (2024) 'Menstrual hygiene management interventions and their effects on schoolgirls' menstrual hygiene experiences in low and middle countries: a systematic review', PLoS ONE, 19(8), e0302523. Available at: https://doi.org/10.1371/journal.pone.0302523",
- "Blimpo, M.P., Evans, D.K. and Lahire, N. (2015) Parental human capital and effective school management: evidence from The Gambia. Policy Research Working Paper 7238. Washington, DC: World Bank. Available at: https://hdl.handle.net/10986/21852",
- 
+ "CGA Technologies (2023) Wi De Ya, One Tablet per School: project report 2022/23. Freetown: Teaching Service Commission.",
  "Cluver, L.D., Meinck, F., Steinert, J.I., Shenderovich, Y., Doubt, J., Herrero Romero, R. et al. (2018) 'Parenting for Lifelong Health: a pragmatic cluster randomised controlled trial of a non-commercialised parenting programme for adolescents and their families in South Africa', BMJ Global Health, 3(1), e000539. Available at: https://doi.org/10.1136/bmjgh-2017-000539",
  "Duflo, E., Hanna, R. and Ryan, S.P. (2012) 'Incentives work: getting teachers to come to school', American Economic Review, 102(4), pp. 1241-1278. Available at: https://doi.org/10.1257/aer.102.4.1241",
  "Global Education Evidence Advisory Panel (GEEAP) (2023) 2023 cost-effective approaches to improve global learning. Washington, DC: World Bank, FCDO, UNICEF and USAID. Available at: https://documents1.worldbank.org/curated/en/099008110232520373/pdf/IDU-9401bfdd-f4ff-486b-84b4-570be4f65543.pdf",
+ "Haimovich, F., Vazquez, E. and Adelman, M. (2021) Scalable early warning systems for school dropout prevention: evidence from a 4.000-school randomized controlled trial. Policy Research Working Paper 9685. Washington, DC: World Bank. Available at: https://hdl.handle.net/10986/35722",
  "IDinsight (2018) Educate Girls Development Impact Bond: final evaluation report. San Francisco: IDinsight. Available at: https://golab.bsg.ox.ac.uk/documents/ID_Insight_2018_Educate_Girls_Development_Impact_Bond_-_Final_Evaluation_Report.pdf",
  "International Cocoa Initiative (ICI) (2021) Effectiveness review of child labour monitoring and remediation systems in the West African cocoa sector. Geneva: ICI. Available at: https://cocoainitiative.org/sites/default/files/ICI-CLMRS-Effectiveness-Review_EN.pdf",
  "Kazianga, H., Levy, D., Linden, L.L. and Sloan, M. (2013) 'The effects of girl-friendly schools: evidence from the BRIGHT school construction program in Burkina Faso', American Economic Journal: Applied Economics, 5(3), pp. 41-62. Available at: https://doi.org/10.1257/app.5.3.41",
+ "Kremer, M., Miguel, E. and Thornton, R. (2004) Incentives to learn. NBER Working Paper 10971. Cambridge, MA: National Bureau of Economic Research. Available at: https://www.nber.org/papers/w10971",
  "Kuecken, M. and Valfort, M.-A. (2015) Fighting corruption does improve schooling: a replication study of a newspaper campaign in Uganda. 3ie Replication Paper 10. Washington, DC: International Initiative for Impact Evaluation. Available at: https://doi.org/10.23846/rps0010",
  "Ladhani, K. and Sinclair, M. (2018) Creating fiscal space where there is none: examining Liberia's teacher vetting and testing project. Case study, Ministerial Leadership Program. Cambridge, MA: Harvard University. Available at: https://ministerialleadership.harvard.edu/case-studies/creating-fiscal-space-where-there-is-none-examining-liberias-teacher-vetting-and-testing-project",
- "Ministry of Basic and Senior Secondary Education (MBSSE) (2025) 2025 Annual School Census: draft report. Freetown: MBSSE, Government of Sierra Leone. Available at: https://mbsse.gov.sl/wp-content/uploads/2026/04/2025_Annual_School_Census_Report.pdf",
  "Lowell, D.I., Carter, A.S., Godoy, L., Paulicin, B. and Briggs-Gowan, M.J. (2011) 'A randomized controlled trial of Child FIRST: a comprehensive home-based intervention translating research into early childhood practice', Child Development, 82(1), pp. 193-208. Available at: https://doi.org/10.1111/j.1467-8624.2010.01550.x",
- "MEASURE Evaluation (2019) The cost of case management in orphans and vulnerable children programs: findings from South Africa. FS-19-342. Chapel Hill, NC: MEASURE Evaluation, University of North Carolina. Available at: https://bettercarenetwork.org/sites/default/files/2021-01/fs-19-342.pdf",
+ "Ministry of Basic and Senior Secondary Education (MBSSE) (2025) 2025 Annual School Census: draft report. Freetown: MBSSE, Government of Sierra Leone. Available at: https://mbsse.gov.sl/wp-content/uploads/2026/04/2025_Annual_School_Census_Report.pdf",
  "Muralidharan, K., Das, J., Holla, A. and Mohpal, A. (2017) 'The fiscal cost of weak governance: evidence from teacher absence in India', Journal of Public Economics, 145, pp. 116-135. Available at: https://doi.org/10.1016/j.jpubeco.2016.11.005",
  "Muralidharan, K., Niehaus, P., Sukhtankar, S. and Weaver, J. (2021) 'Improving last-mile service delivery using phone-based monitoring', American Economic Journal: Applied Economics, 13(2), pp. 52-82. Available at: https://doi.org/10.1257/app.20190783",
- "Muralidharan, K. and Singh, A. (2020) Improving public sector management at scale? Experimental evidence on school governance in India. NBER Working Paper 28129. Cambridge, MA: National Bureau of Economic Research. Available at: https://www.nber.org/papers/w28129",
  "Phillips-Howard, P.A., Nyothach, E., ter Kuile, F.O., Omoto, J., Wang, D., Zeh, C. et al. (2016) 'Menstrual cups and sanitary pads to reduce school attrition, and sexually transmitted and reproductive tract infections: a cluster randomised controlled feasibility study in rural western Kenya', BMJ Open, 6(11), e013229. Available at: https://doi.org/10.1136/bmjopen-2016-013229",
  "Pugatch, T. and Schroeder, E. (2014) 'Incentives for teacher relocation: evidence from the Gambian hardship allowance', Economics of Education Review, 41, pp. 120-136. Available at: https://doi.org/10.1016/j.econedurev.2014.04.003",
- "Reinikka, R. and Svensson, J. (2005) 'Fighting corruption to improve schooling: evidence from a newspaper campaign in Uganda', Journal of the European Economic Association, 3(2-3), pp. 259-267. Available at: https://econpapers.repec.org/RePEc:tpr:jeurec:v:3:y:2005:i:2-3:p:259-267",
- "Haimovich, F., Vazquez, E. and Adelman, M. (2021) Scalable early warning systems for school dropout prevention: evidence from a 4.000-school randomized controlled trial. Policy Research Working Paper 9685. Washington, DC: World Bank. Available at: https://hdl.handle.net/10986/35722"
+ "Reinikka, R. and Svensson, J. (2005) 'Fighting corruption to improve schooling: evidence from a newspaper campaign in Uganda', Journal of the European Economic Association, 3(2-3), pp. 259-267. Available at: https://econpapers.repec.org/RePEc:tpr:jeurec:v:3:y:2005:i:2-3:p:259-267"
 ];
 
 /* ---------- arithmetic ---------- */
@@ -374,20 +385,25 @@ function word(p,x){return (x>0.95&&x<1.05)?p.unit:p.units;}
 /* Sierra Leone averages, 2025 Annual School Census (MBSSE, 2025): 3,450,104 pupils (1,781,249 girls),
    13,444 schools, 92,392 teachers. Pupils per school and girls per school are our arithmetic; 37 pupils per teacher is stated. */
 var SL = {pupilsPerSchool:3450104/13444, girlsPerSchool:1781249/13444, pupilsPerTeacher:37};
-var PER_SCHOOL = ["wrap","mgmt","digitise","infra","baseline"];
+var PER_SCHOOL = ["wrap","digitise","infra","baseline"];
 var PER_TEACHER = ["retention"];
-var TEACHERS_PER_VISIT = 20;
+/* Payroll: 2,791 teachers checked (1,703 payroll expected + 1,088 non-payroll) for 1,341 corrections
+   (253 removed + 1,088 not on payroll), 300-school phase (CGA Technologies, 2023). */
+var TEACHERS_PER_CORRECTION = 2791/1341;
 function buys(p, d){
   var o={main:"", illus:""};
   if(d<=0){o.main="Nothing allocated";return o;}
-  if(p.id==="lgcap"){o.main="Coaching and monitoring support for district staff and the Teaching Service Commission";return o;}
   var x=d/COSTS[p.id];
-  o.main=(x<0.95)?"About "+count(x)+" of one "+p.unit:"About "+count(x)+" "+word(p,x);
+  if(x<0.95){o.main=moneyRound(d)+" towards "+p.one+" ("+moneyRound(COSTS[p.id])+" each)";return o;}
+  if(x<10){
+    var n=Math.floor(x+1e-9), rem=d-n*COSTS[p.id];
+    o.main=n+" "+(n===1?p.unit:p.units)+(rem>=1?", and "+moneyRound(rem)+" towards another":"");
+    x=n;
+  } else o.main="About "+count(x)+" "+word(p,x);
   if(PER_SCHOOL.indexOf(p.id)>=0) o.main+=", in schools with about "+count(x*SL.pupilsPerSchool)+" pupils, "+count(x*SL.girlsPerSchool)+" of them girls";
   if(PER_TEACHER.indexOf(p.id)>=0) o.main+=", whose classes hold about "+count(x*SL.pupilsPerTeacher)+" pupils";
-  if(p.id==="payroll") o.main+=", verifying about "+count(x*TEACHERS_PER_VISIT)+" teachers, whose classes hold about "+count(x*TEACHERS_PER_VISIT*SL.pupilsPerTeacher)+" pupils";
-  if(p.id==="cash") o.illus="About "+count(x/12)+" girls supported for a full year.";
-  if(p.id==="referral") o.illus="The comparator cost leaves out field services that South Africa's government paid for, so the full cost per child is likely to be higher; treat this count as an upper bound.";
+  if(p.id==="payroll") o.main+=", from checking about "+count(x*TEACHERS_PER_CORRECTION)+" teachers";
+  if(p.id==="cash"&&x>=10){var g=Math.floor(x/10);o.illus=g+(g===1?" girl":" girls")+" supported for a school year of 10 months.";}
   return o;
 }
 
@@ -445,7 +461,7 @@ function build(){
       var a=el("div");
       a.appendChild(el("h3",{id:"h-"+p.id},p.name));
       a.appendChild(el("p",{"class":"idesc"},p.what));
-      if(p.menu) a.appendChild(el("p",{"class":"menu"},"Not yet delivered in GISI: an option from Corus's programme menu."));
+      if(p.menu) a.appendChild(el("p",{"class":"menu"},"Not yet run in GISI."));
       row.appendChild(a);
       var ctrl=el("div",{"class":"ctrl"});
       var minus=el("button",{type:"button","aria-label":"Decrease "+p.name+" by 5 percentage points"},"-");
@@ -461,11 +477,11 @@ function build(){
       v.appendChild(top);v.appendChild(el("p",{"class":"iunits",id:"un-"+p.id}));
       row.appendChild(v);
       var more=el("div",{"class":"more"});
-      var tg=el("button",{type:"button","class":"toggle","aria-expanded":"false","aria-controls":"det-"+p.id},"Why it matters, evidence, and cost");
+      var tg=el("button",{type:"button","class":"toggle","aria-expanded":"false","aria-controls":"det-"+p.id},"Why it matters, evidence, and price");
       var det=el("div",{"class":"detail",id:"det-"+p.id,hidden:""});
       var c1=el("div");c1.appendChild(el("h4",null,"Why it matters"));c1.appendChild(el("p",null,p.why));
       var c2=el("div");c2.appendChild(el("h4",null,"What the research says"));c2.appendChild(el("p",{"class":"ev"},"Evidence: "+EV[p.ev]));c2.appendChild(el("p",null,p.evidence));
-      var c3=el("div");c3.appendChild(el("h4",null,"Unit cost"));c3.appendChild(el("p",null,p.cost));c3.appendChild(el("p",{"class":"illus",id:"ill-"+p.id}));
+      var c3=el("div");c3.appendChild(el("h4",null,"Price"));c3.appendChild(el("p",null,p.cost));c3.appendChild(el("p",{"class":"illus",id:"ill-"+p.id}));
       det.appendChild(c1);det.appendChild(c2);det.appendChild(c3);
       tg.addEventListener("click",function(){var open=det.hasAttribute("hidden");if(open)det.removeAttribute("hidden");else det.setAttribute("hidden","");tg.setAttribute("aria-expanded",String(open));});
       more.appendChild(tg);more.appendChild(det);
@@ -512,7 +528,7 @@ function render(){
     document.getElementById("ls-"+L.id).textContent=lp[L.id]+"% of your gift, "+money(lc[L.id]);
   });
   var isStart=IDS.every(function(i){return state.alloc[i]===START[i];});
-  document.getElementById("reading").textContent=isStart?"This is GISI's recommended mix. Half goes to cash for the girls most at risk; the rest builds the school records, case work, and trained school and district staff that find those girls, keep them in class, and let government carry the work on.":reading(lp);
+  document.getElementById("reading").textContent=isStart?"This is the mix GISI recommends. Half pays for monthly cash to the families of the girls most at risk; the other half pays for the school records, home visits, scholarships and district workshops that find those girls and keep them attending.":reading(lp);
 
   var eb=document.getElementById("evbars");eb.innerHTML="";
   Object.keys(EV).forEach(function(k){
@@ -522,10 +538,10 @@ function render(){
 }
 
 function reading(s){
-  if(s.family>=60) return "Your mix leans to direct, deep support: most of it reaches named girls and families this school year, where the evidence on attendance is strongest. Fewer children are reached per dollar, and less remains once the money is spent.";
-  if(s.system>=40) return "Your mix leans to system change: few girls feel it this year, but it works through government's own staff and much larger budget, so its reach and life are longest. Its evidence comes mostly from other countries.";
-  if(s.school>=50) return "Your mix leans to schools: it changes the routines every child in a school meets each day, and it is what lets the family-level work be targeted precisely. Each girl feels it less directly than a visit or a transfer.";
-  return "Your mix is balanced across families, schools, and government, which mirrors how GISI works: school data finds the girl, the school and case worker act, cash and referrals remove the barrier, and government learns to carry it on.";
+  if(s.family>=60) return "Most of this mix pays for cash, visits, sessions and pads that reach individual girls and families this school year, where the research on attendance is strongest for cash. It reaches fewer children per dollar than school or district work, and most of it is spent within the year.";
+  if(s.system>=40) return "Most of this mix pays for district workshops and payroll corrections. Few girls see it this year; it works through government staff and budgets, and its research comes mostly from other countries.";
+  if(s.school>=50) return "Most of this mix pays for school records, scholarships, targeting and latrines; each girl feels it less directly than a visit or a payment.";
+  return "This mix is spread across families, schools and government, as GISI is: school data finds the girl, the school and case worker act, and cash and referrals address the reason she is missing school.";
 }
 
 build();
